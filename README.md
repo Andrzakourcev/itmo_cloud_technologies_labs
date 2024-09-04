@@ -1,4 +1,4 @@
-# itmo_cloud_technologies_labs
+# ITMO_cloud_technologies_labs
 
 ## Авторы: Титов Георгий Константинович, Закоурцев Андрей Вадимович
 
