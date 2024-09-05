@@ -6,7 +6,7 @@
 
 ![image](https://github.com/user-attachments/assets/00613fb1-3bb7-4ffb-97a8-ff593b057e4a)
 
-#Запуск nginx 
+# Запуск nginx 
 Запуск и проверка статуса осуществляем с помощью данных команд:
 ```
 sudo systemctl start nginx
