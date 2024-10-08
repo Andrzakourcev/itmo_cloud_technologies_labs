@@ -12,11 +12,19 @@
 
 > Перед началом уточним, что работаем мы на ОС **Ubuntu 24.04 LTS**. Теперь можем начинать!
 
-Открываем терминал и при помощи команды `sudo apt-get install nginx` устанавливаем NGINX.
-
-Если нас просят продолжить - соглашаемся.
-
-NGINX установлен!
+Открываем терминал и при помощи команды `sudo apt-get install nginx` устанавливаем NGINX.  
+Если нас просят продолжить - соглашаемся.  
+NGINX установлен!  
 
 ![Снимок экрана от 2024-10-08 16-02-46](https://github.com/user-attachments/assets/0fcd9826-6425-46f5-880d-47d121c2abb2)
+
 ![Снимок экрана от 2024-10-08 16-03-17](https://github.com/user-attachments/assets/ffc339bc-ab96-44c5-a9bd-bd13468b1109)
+
+После установки проверяем статус работы NGINX при помощи команды `sudo systemctl status nginx`.
+
+![Снимок экрана от 2024-10-08 16-20-18](https://github.com/user-attachments/assets/917b1a5b-bbd9-42d6-bef4-9497f649999d)
+
+Если статус **inactive (dead)**, запустите NGINX вручную с помощью команды `sudo systemctl start nginx`.  
+NGINX автоматически запускается во время загрузки сервера.  
+Чтобы отключить автозапуск, введите `sudo systemctl disable nginx`.  
+Чтобы возобновить автозапуск сервиса, введите `sudo systemctl enable nginx`.  
