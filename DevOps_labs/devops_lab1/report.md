@@ -49,7 +49,9 @@
 
 ## Добавление контента
 
-* Создадим для наших сайтов **index.html** файлы при помощи команды `sudo nano /var/www/myfirstdomain/html/index.html` для первого сайта, `sudo nano /var/www/myseconddomain/html/index.html` - для второго. Пример верстки: ```<html>
+* Создадим для наших сайтов **index.html** файлы при помощи команды `sudo nano /var/www/myfirstdomain/html/index.html` для первого сайта, `sudo nano /var/www/myseconddomain/html/index.html` - для второго. Пример верстки:
+```
+<html>
     <head>
         <title>Hello World</title>
     </head>
