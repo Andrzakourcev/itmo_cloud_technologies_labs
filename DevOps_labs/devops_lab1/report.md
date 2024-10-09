@@ -16,10 +16,6 @@
 * Если нас просят продолжить - соглашаемся.  
 * NGINX установлен!  
 
-![Снимок экрана от 2024-10-08 16-02-46](https://github.com/user-attachments/assets/0fcd9826-6425-46f5-880d-47d121c2abb2)
-
-![Снимок экрана от 2024-10-08 16-03-17](https://github.com/user-attachments/assets/ffc339bc-ab96-44c5-a9bd-bd13468b1109)
-
 * После установки проверяем статус работы NGINX при помощи команды `sudo systemctl status nginx`.
 
 ![Снимок экрана от 2024-10-08 16-20-18](https://github.com/user-attachments/assets/917b1a5b-bbd9-42d6-bef4-9497f649999d)
