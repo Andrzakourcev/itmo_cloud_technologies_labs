@@ -67,8 +67,8 @@
 * Шаг 2 - Создаем самоподписный сертификат и приватный ключ. Описывать что значит каждый из параметров не видем смысла, поэтому остановимся на самых важных `-keyout` - куда сохраняем приватный ключ, `-out` - куда сохраняем сертификат.
 ```
 sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
-  -keyout /etc/ssl/mycerts/mykey.key \
-  -out /etc/ssl/mycerts/mycert.crt
+  -keyout /etc/ssl/private/Site1.com.key \
+  -out /etc/ssl/certs/Site1.com.crt
 ```
 * Шаг 3 - вовзращаемся к файлу конфигуратору и прописываем пути к нашему ключу и сертификату.
 
