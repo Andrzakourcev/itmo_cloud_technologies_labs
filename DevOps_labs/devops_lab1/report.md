@@ -83,3 +83,7 @@ sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
 ![image](https://github.com/user-attachments/assets/a5e84008-968c-428e-aeb5-9143bcbbb3c8)
 
 * Заходим в браузер и пробуем достучаться до сайта - `http://Site1.com`.
+
+![image](https://github.com/user-attachments/assets/69538bc1-3dee-4652-868d-a0396302e579)
+
+* Как видим редирект работает и мы попали с `http://Site1.com` на `https://Site.com`. Браузер ругается на небезопасное соединение. Это нормально так как мы пользовались самоподписанным сертификатом.
