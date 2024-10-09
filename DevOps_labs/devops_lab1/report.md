@@ -81,3 +81,5 @@ sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
 * Если нет ошибок, то перезапускаем NGINX - `sudo systemctl reload nginx`.
 
 ![image](https://github.com/user-attachments/assets/a5e84008-968c-428e-aeb5-9143bcbbb3c8)
+
+* Заходим в браузер и пробуем достучаться до сайта `http://Site1.com`.
