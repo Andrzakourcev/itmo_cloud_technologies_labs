@@ -49,10 +49,10 @@
 ```
 <html>
     <head>
-        <title>Hello World</title>
+        <title>Site 1</title>
     </head>
     <body>
-        <h1>Success!</h1>
+        <h1>Success! {Site1}</h1>
     </body>
 </html>
 ```
