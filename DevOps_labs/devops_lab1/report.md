@@ -49,7 +49,7 @@
 ```
 <html>
     <head>
-        <title>Site 1</title>
+        <title>Site1</title>
     </head>
     <body>
         <h1>Success! {Site1}</h1>
