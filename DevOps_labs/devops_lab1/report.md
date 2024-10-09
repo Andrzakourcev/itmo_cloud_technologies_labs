@@ -90,6 +90,9 @@ sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
 
 
 * Заходим в браузер и пробуем достучаться до сайта - `http://myfirstdomain`.
+* Если все работает, нас должно перебросить на https соединение.
+
+![image](https://github.com/user-attachments/assets/0f0c6775-b2c6-4559-90e7-05ac45720de1)
 
 
 ## Создаем псевдонимы путей к файлам (Alias)
