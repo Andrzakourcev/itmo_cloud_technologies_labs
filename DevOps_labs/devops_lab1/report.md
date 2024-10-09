@@ -18,7 +18,8 @@
 
 * После установки проверяем статус работы NGINX при помощи команды `sudo systemctl status nginx`.
 
-![Снимок экрана от 2024-10-08 16-20-18](https://github.com/user-attachments/assets/917b1a5b-bbd9-42d6-bef4-9497f649999d)
+![image](https://github.com/user-attachments/assets/2a38f77b-d054-4eff-9204-f83045fd9254)
+
 
 * Если статус **inactive (dead)**, запустите NGINX вручную с помощью команды `sudo systemctl start nginx`.  
 * NGINX автоматически запускается во время загрузки сервера.  
@@ -26,33 +27,37 @@
 * Чтобы возобновить автозапуск сервиса, введите `sudo systemctl enable nginx`.
 * Также проверим работу нашего NGINX с локального хоста.
 
-![Снимок экрана от 2024-10-08 16-28-17](https://github.com/user-attachments/assets/007365e4-b0bc-4f4c-81c5-dca32b0b05af)
+![image](https://github.com/user-attachments/assets/18bd9813-2e8d-4460-86a3-df35ac1ae686)
+
 
 ## Настройка виртуальных хостов
 
 * Прежде чем создать виртуальный хост, нужно создать директорию для сайта, в которой будут размещены все необходимые файлы. По умолчанию в Ubuntu включен один виртуальный хост NGINX, который обслуживает документы из каталога `/var/www/html`. Чтобы добавить еще один домен, необходимо создать директорию в `/var/www`.
-* Создадим директории для наших сайтов при помощи команд `sudo mkdir -p /var/www/Site1.com/html` и `sudo mkdir -p /var/www/Site2.com/html`. Контент для сайтов мы добавим чуть позже.
-* А теперь давайте перейдем к директории `/etc/nginx/sites-available`, где создадим файлы-конфигурвции для наших сайтов. При помощи команды `sudo nano /etc/nginx/sites-available/Site1.com.conf` создаем файл-конфигурацию для нашего сайта и сразу же настраиваем его. По аналогии проделываем те же операции для второго сайта.
+* Создадим директории для наших сайтов при помощи команд `sudo mkdir -p /var/www/myfirstdomain/html` и `sudo mkdir -p /var/www/myseconddomain/html`. Контент для сайтов мы добавим чуть позже.
+* А теперь давайте перейдем к директории `/etc/nginx/sites-available`, где создадим файлы-конфигурвции для наших сайтов. При помощи команды `sudo nano /etc/nginx/sites-available/myfirstdomain.conf` создаем файл-конфигурацию для нашего сайта и сразу же настраиваем его. По аналогии проделываем те же операции для второго сайта.
 
-![Снимок экрана от 2024-10-09 13-39-55](https://github.com/user-attachments/assets/3d8577e6-cec2-4d38-be9f-1378e3f3ccc4)
+![image](https://github.com/user-attachments/assets/eb23be93-022e-42dd-84ab-27089faccccf)
 
-* В первом блоке **server** мы прописали: `listen 80;` - что сервер ждет запорсы пользователей на порту `80`, `server_name Site1.com;` - теперь веб-сервер будет ожидать запросы, адрисованные к этому домену, `location /` - `root /var/www/...;` - путь к файлам сайта. Когда придет запрос, NGINX будет искать файлы для сайта в этой дериктории/ `index index.html;` - название главного html файла (его мы добавим чуть позже). `return 301 https://...;` - редирект с http на https соединение.
+
+
+* В первом блоке **server** мы прописали: `listen 80;` - что сервер ждет запорсы пользователей на порту `80`, `server_name myfirstdomain;` - теперь веб-сервер будет ожидать запросы, адрисованные к этому домену, `location /` - `root /var/www/...;` - путь к файлам сайта. Когда придет запрос, NGINX будет искать файлы для сайта в этой дериктории/ `index index.html;` - название главного html файла (его мы добавим чуть позже). `return 301 https://...;` - редирект с http на https соединение.
 * Второй блок **server** отличается лишь тем что мы добавили две новые строчки, отвечающие за безопасное соединение с сервером по ssl. Сами ключи и сертификаты мы добави чуть позже.
 
 * Давайте также для удобства тестирования сделаем следующее. Откроем файл `/etc/hosts` и присвоим нашим доменам IP-адресс локального хоста.
 
-![Снимок экрана от 2024-10-09 13-38-38](https://github.com/user-attachments/assets/79c66a5f-de54-4e01-9918-f7af60041c39)
+![image](https://github.com/user-attachments/assets/9af238fd-9e02-4a58-b80c-db4af7234441)
+
 
 ## Добавление контента
 
-* Создадим для наших сайтов **index.html** файлы при помощи команды `sudo nano /var/www/Site1.com/html/index.html` для первого сайта, `sudo nano /var/www/Site2.com/html/index.html` - для второго. Пример верстки:
+* Создадим для наших сайтов **index.html** файлы при помощи команды `sudo nano /var/www/myfirstdomain/html/index.html` для первого сайта, `sudo nano /var/www/myseconddomain/html/index.html` - для второго. Пример верстки:
 ```
 <html>
     <head>
-        <title>Site1</title>
+        <title>Hello world!</title>
     </head>
     <body>
-        <h1>Success! {Site1}</h1>
+        <h1>Success!</h1>
     </body>
 </html>
 ```
@@ -67,22 +72,24 @@
 * Шаг 2 - Создаем самоподписный сертификат и приватный ключ. Описывать что значит каждый из параметров не видем смысла, поэтому остановимся на самых важных `-keyout` - куда сохраняем приватный ключ, `-out` - куда сохраняем сертификат.
 ```
 sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
-  -keyout /etc/ssl/private/Site1.com.key \
-  -out /etc/ssl/certs/Site1.com.crt
+  -keyout /etc/ssl/private/myfirstdomain.key \
+  -out /etc/ssl/certs/myfirstdomain.crt
 ```
 * Шаг 3 - вовзращаемся к файлу конфигуратору и прописываем пути к нашему ключу и сертификату.
 
-![Снимок экрана от 2024-10-09 13-39-00](https://github.com/user-attachments/assets/3c8b18c2-5297-4638-af46-3e314f7ed90f)
+![image](https://github.com/user-attachments/assets/f42e0410-1ce7-4690-9b30-cc877b77eaec)
+
 
 ## Проверяем работу нашего веб-сервера
 
-* Активируем виртуальный хост - `sudo ln -s /etc/nginx/sites-available/Site1.com.conf /etc/nginx/sites-enabled/` (то же самое для второго сервера).
+* Активируем виртуальный хост - `sudo ln -s /etc/nginx/sites-available/myfirstdomain.conf /etc/nginx/sites-enabled/` (то же самое для второго сервера).
 * Проверяем конфигурацию - `sudo nginx -t`.
 * Если нет ошибок, то перезапускаем NGINX - `sudo systemctl reload nginx`.
 
-![image](https://github.com/user-attachments/assets/a5e84008-968c-428e-aeb5-9143bcbbb3c8)
+![image](https://github.com/user-attachments/assets/1075391f-50ff-4c25-a3fb-4d977fba3838)
 
-* Заходим в браузер и пробуем достучаться до сайта - `http://Site1.com`.
+
+* Заходим в браузер и пробуем достучаться до сайта - `http://myfirstdomain`.
 
 
 ## Создаем псевдонимы путей к файлам (Alias)
