@@ -26,4 +26,9 @@ echo \
   $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
   sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 sudo apt-get update
+
+# To install the latest version, run:
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 ```
+* Если при выполнении команд не возникло ошибок, то поздравляем - Docker успешно установлен!
+* На всякий случай проверим, что все работает, запустив приветствующий образ - `sudo docker run hello-world`.
