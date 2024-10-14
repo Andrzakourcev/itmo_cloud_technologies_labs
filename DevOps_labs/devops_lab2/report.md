@@ -80,4 +80,15 @@ RUN apk add --no-cache bash=5.1.0-r0
 
 # Указываем рабочую директорию
 WORKDIR /app
+
+# Копируем наш скрипт
+COPY script.sh /app
+
+# Делаем скрипт исполняемым
+RUN chmod +x script.sh
+
+# Запускаем bash-скрипт
+CMD ["bash", "./script.sh"]
 ```
+* Что поменялось?
+1. Во-первых, 
