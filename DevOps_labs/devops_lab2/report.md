@@ -112,3 +112,7 @@ CMD ["bash", "./script.sh"]
 
 ![Снимок экрана от 2024-10-14 14-47-15](https://github.com/user-attachments/assets/d9e63546-fadb-42f5-9a98-8cfd445ef665)
 
+* Сюда вывод потом
+
+## "BAD PRACTICES" в работе с контейнерами
+
