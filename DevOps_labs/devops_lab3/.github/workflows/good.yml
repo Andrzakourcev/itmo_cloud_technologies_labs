@@ -39,4 +39,4 @@ jobs:
       - name: Install deps
         run: npm run ci
       - name: Build
-        run: npm run build
+        run: npm run build -- --output dist/
