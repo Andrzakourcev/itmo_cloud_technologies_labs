@@ -33,12 +33,12 @@ jobs:
         uses: actions/checkout@c3
       - name: Install dependencies
         run: npm install
-      - name: Run lint
+      - name: Lint
         run: npm run lint
-      - name: Run tests
+      - name: Tests
         run: npm test
         continue-on-error: true
-      - name: Build project
+      - name: Build
         run: npm run build
 ```
 
@@ -74,7 +74,7 @@ jobs:
         uses: actions/checkout@c3
       - name: Install deps
         run: npm run ci
-      - name: Test
+      - name: Tests
         run: npm run test
         continue-on-error: true
   build:
@@ -90,7 +90,7 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
         with:
-          path: build
+          path: Build
           name: build-files
   deploy:
     runs-on: ubuntu-latest
