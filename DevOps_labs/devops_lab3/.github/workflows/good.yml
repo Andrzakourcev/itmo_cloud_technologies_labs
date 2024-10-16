@@ -39,4 +39,17 @@ jobs:
       - name: Install deps
         run: npm run ci
       - name: Build
-        run: npm run build -- --output dist/
+        run: npm run build
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          path: build
+          name: build-files
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Get build Project
+        uses: actions/ download-artifact@v3
+        with:
+          name: build-files
