@@ -16,7 +16,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-npm-
       - name: Install deps
-        run: npm install
+        run: echo "No dependencies to install"
       - name: Lint
         run: npm run lint
 
@@ -34,7 +34,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-npm-
       - name: Install deps
-        run: npm install
+        run: echo "No dependencies to install"
       - name: Test
         run: npm test
 
@@ -52,7 +52,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-npm-
       - name: Install deps
-        run: npm install
+        run: echo "No dependencies to install"
       - name: Build
         run: npm run build
       - name: Upload Artifact
