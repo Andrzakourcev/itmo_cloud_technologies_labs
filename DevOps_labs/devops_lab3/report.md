@@ -44,6 +44,11 @@ jobs:
         run: npm run build
 ```
 
+* Результат работы плохого пайплайна
+
+![image](https://github.com/user-attachments/assets/4a70a137-f00c-4c72-aeea-085623c16aa2)
+
+
 ## Хороший (исправленный) pipeline
 
 ```
