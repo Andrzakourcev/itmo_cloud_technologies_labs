@@ -81,6 +81,13 @@ jobs:
     steps:
       - name: Chechout
         uses: actions/checkout@c3
+      - name: Cache deps
+             uses: actions/cache@v3
+             with:
+               path: "~/.npm"
+               key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
+               restore-keys: |
+                 ${{ runner.os }}-npm-
       - name: Install deps
         run: npm run ci
       - name: Tests
@@ -92,6 +99,13 @@ jobs:
     steps:
       - name: Chechout
         uses: actions/checkout@v3
+      - name: Cache deps
+                   uses: actions/cache@v3
+                   with:
+                     path: "~/.npm"
+                     key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
+                     restore-keys: |
+                       ${{ runner.os }}-npm-
       - name: Install deps
         run: npm run ci
       - name: Build
