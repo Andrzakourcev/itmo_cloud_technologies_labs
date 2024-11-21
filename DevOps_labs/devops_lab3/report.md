@@ -32,7 +32,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Chechout
-        uses: actions/checkout@c3
+        uses: actions/checkoutv3
       - name: Install dependencies
         run: npm install
       - name: Lint
@@ -63,7 +63,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Chechout
-        uses: actions/checkout@c3
+        uses: actions/checkout@v3
       - name: Cache deps
         uses: actions/cache@v3
         with:
@@ -91,7 +91,7 @@ jobs:
     needs: test
     steps:
       - name: Chechout
-        uses: actions/checkout@c3
+        uses: actions/checkout@v3
       - name: Install deps
         run: npm run ci
       - name: Build
