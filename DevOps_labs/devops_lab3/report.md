@@ -46,6 +46,8 @@ jobs:
 
 * Результат работы плохого пайплайна
 
+![image](https://github.com/user-attachments/assets/f0f3ed74-37ee-4316-8e62-8fd9c5f929a7)
+
 ![image](https://github.com/user-attachments/assets/4a70a137-f00c-4c72-aeea-085623c16aa2)
 
 
