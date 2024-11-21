@@ -6,38 +6,53 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-      - name: Chechout
+      - name: Checkout
         uses: actions/checkout@v3
       - name: Cache deps
         uses: actions/cache@v3
         with:
-        path ~/.npm
-        key: ${{ runner.os }}-npm-${{  hashFiles('**/package-lock.json') }}
-        restore-keys: |
-          ${{  runner.os }}-npm-
+          path: "~/.npm"
+          key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-npm-
       - name: Install deps
-        run: npm run ci
+        run: npm ci
       - name: Lint
         run: npm run lint
+
   test:
     runs-on: ubuntu-latest
     needs: lint
     steps:
-      - name: Chechout
+      - name: Checkout
         uses: actions/checkout@v3
+      - name: Cache deps
+        uses: actions/cache@v3
+        with:
+          path: "~/.npm"
+          key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-npm-
       - name: Install deps
-        run: npm run ci
+        run: npm ci
       - name: Test
-        run: npm run test
-        continue-on-error: false
+        run: npm test
+
   build:
     runs-on: ubuntu-latest
     needs: test
     steps:
-      - name: Chechout
+      - name: Checkout
         uses: actions/checkout@v3
+      - name: Cache deps
+        uses: actions/cache@v3
+        with:
+          path: "~/.npm"
+          key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-npm-
       - name: Install deps
-        run: npm run ci
+        run: npm ci
       - name: Build
         run: npm run build
       - name: Upload Artifact
@@ -45,11 +60,12 @@ jobs:
         with:
           path: build
           name: build-files
+
   download:
     runs-on: ubuntu-latest
     needs: build
     steps:
-      - name: Get build Project
-        uses: actions/ download-artifact@v3
+      - name: Get Build Project
+        uses: actions/download-artifact@v3
         with:
           name: build-files
