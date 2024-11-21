@@ -1,0 +1,14 @@
+{
+  "name": "pipeline-practices",
+  "version": "1.0.0",
+  "description": "A project with scripts simulating pipeline activities for demonstration purposes.",
+  "main": "index.js",
+  "scripts": {
+    "lint": "echo 'Running linter... (this is just a simulation)'",
+    "test": "echo 'Running tests... (this is just a simulation)'",
+    "build": "echo 'Building project... (this is just a simulation)'"
+  },
+  "keywords": ["pipeline", "example", "practices"],
+  "author": "Titov Georgy",
+  "license": "ISC"
+}
