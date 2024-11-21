@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Chechout
-        uses: actions/checkout@c3
+        uses: actions/checkout@v3
       - name: Install dependencies
         run: npm install
       - name: Run lint
