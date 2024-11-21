@@ -1,1 +1,55 @@
+name: Good Practices pipeline
 
+on: workflow_dispatch
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Chechout
+        uses: actions/checkout@c3
+      - name: Cache deps
+        uses: actions/cache@v3
+        with:
+        path ~/.npm
+        key: ${{ runner.os }}-npm-${{  hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{  runner.os }}-npm-
+      - name: Install deps
+        run: npm run ci
+      - name: Lint
+        run: npm run lint
+  test:
+    runs-on: ubuntu-latest
+    needs: lint
+    steps:
+      - name: Chechout
+        uses: actions/checkout@c3
+      - name: Install deps
+        run: npm run ci
+      - name: Test
+        run: npm run test
+        continue-on-error: false
+  build:
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - name: Chechout
+        uses: actions/checkout@c3
+      - name: Install deps
+        run: npm run ci
+      - name: Build
+        run: npm run build
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          path: build
+          name: build-files
+  download:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Get build Project
+        uses: actions/ download-artifact@v3
+        with:
+          name: build-files
