@@ -16,4 +16,4 @@
 
 ![image](https://github.com/user-attachments/assets/2149951f-2038-4fd2-afd9-44563212a330)
 
-## Клиент-серверное приложение с ипользованием Docker Compose
+## Создание проекта
