@@ -20,4 +20,16 @@
 
 * Перед написанием `Docker Compose` - файла создадим небольшой php-проект, который будет выводить в окно нашего браузера приветствующее сообщение.
 
- 
+ ![Снимок экрана от 2024-11-23 08-57-58](https://github.com/user-attachments/assets/dd729744-c113-4f54-b260-e65c72e994af)
+
+* Соберем образ.
+
+![Снимок экрана от 2024-11-23 09-04-40](https://github.com/user-attachments/assets/7683f2b8-7ad0-4555-84e8-e8d03208d037)
+
+* Командой `sudo docker images` - проверяем, что наш образ успешно собрался.
+
+![Снимок экрана от 2024-11-23 09-05-45](https://github.com/user-attachments/assets/8e9554e3-9dcd-4b7b-a2dd-8340153169fc)
+
+* `sudo docker run php-apache-app` - запускаем котнейнер и проверяем его работу.
+
+![Снимок экрана от 2024-11-23 09-57-08](https://github.com/user-attachments/assets/7dc839bd-ee80-475d-93ac-35b0b5d0f4a6)
