@@ -124,6 +124,72 @@ jobs:
         with:
           name: build-files
 ```
+```
+name: Bad Practices pipeline
+
+on: workflow_dispatch
+
+jobs:
+  lint:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Cache deps
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-npm-
+      - name: Install deps
+        run: npm ci
+      - name: Lint
+        run: npm run lint
+
+  test:
+    runs-on: ubuntu-20.04
+    needs: lint
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Cache deps
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-npm-
+      - name: Install deps
+        run: npm ci
+      - name: Tests
+        run: npm test
+        continue-on-error: true
+
+  build:
+    runs-on: ubuntu-20.04
+    needs: test
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Cache deps
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-npm-
+      - name: Install deps
+        run: npm ci
+      - name: Build
+        run: npm run build
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          path: build
+          name: build-files
+
+```
 
 * Результат работы хорошего пайплайна.
 
