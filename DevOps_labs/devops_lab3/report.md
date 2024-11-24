@@ -60,77 +60,6 @@ on: workflow_dispatch
 
 jobs:
   lint:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Chechout
-        uses: actions/checkout@v3
-      - name: Cache deps
-        uses: actions/cache@v3
-        with:
-        path ~/.npm
-        key: ${{ runner.os }}-npm-${{  hashFiles('**/package-lock.json') }}
-        restore-keys: |
-          ${{  runner.os }}-npm-
-      - name: Install deps
-        run: npm run ci
-      - name: Lint
-        run: npm run lint
-  test:
-    runs-on: ubuntu-latest
-    needs: lint
-    steps:
-      - name: Chechout
-        uses: actions/checkout@c3
-      - name: Cache deps
-             uses: actions/cache@v3
-             with:
-               path: "~/.npm"
-               key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
-               restore-keys: |
-                 ${{ runner.os }}-npm-
-      - name: Install deps
-        run: npm run ci
-      - name: Tests
-        run: npm run test
-        continue-on-error: true
-  build:
-    runs-on: ubuntu-latest
-    needs: test
-    steps:
-      - name: Chechout
-        uses: actions/checkout@v3
-      - name: Cache deps
-                   uses: actions/cache@v3
-                   with:
-                     path: "~/.npm"
-                     key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
-                     restore-keys: |
-                       ${{ runner.os }}-npm-
-      - name: Install deps
-        run: npm run ci
-      - name: Build
-        run: npm run build
-      - name: Upload Artifact
-        uses: actions/upload-artifact@v3
-        with:
-          path: Build
-          name: build-files
-  download:
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - name: Get build Project
-        uses: actions/ download-artifact@v3
-        with:
-          name: build-files
-```
-```
-name: Bad Practices pipeline
-
-on: workflow_dispatch
-
-jobs:
-  lint:
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout
@@ -183,12 +112,6 @@ jobs:
         run: npm ci
       - name: Build
         run: npm run build
-      - name: Upload Artifact
-        uses: actions/upload-artifact@v3
-        with:
-          path: build
-          name: build-files
-
 ```
 
 * Результат работы хорошего пайплайна.
