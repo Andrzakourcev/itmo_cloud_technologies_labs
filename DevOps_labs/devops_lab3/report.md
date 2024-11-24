@@ -93,7 +93,7 @@ jobs:
         run: npm ci
       - name: Tests
         run: npm test
-        continue-on-error: true
+        continue-on-error: false
 
   build:
     runs-on: ubuntu-20.04
