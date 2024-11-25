@@ -33,3 +33,8 @@
 * `sudo docker run php-apache-app` - запускаем котнейнер и проверяем его работу.
 
 ![Снимок экрана от 2024-11-23 09-57-08](https://github.com/user-attachments/assets/7dc839bd-ee80-475d-93ac-35b0b5d0f4a6)
+
+## Плохой Docker Compose
+
+>  Сначала зайдем на **DockerHub** (https://hub.docker.com/), откуда подтянем несколько готовых образов. Пусть это будет образ `phpmyadmin` (графический интерфейс для управдения базами данных) и БД `mysql`.
+
