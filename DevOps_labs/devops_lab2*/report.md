@@ -89,3 +89,52 @@ services:
 * Как можно увидеть у нас все запустилось. Но у нас не получается подключиться в phpmyadmin. Эту проблему мы решим дальше.
 
 ## Хороший Docker Compose
+
+```
+version: '3.2'
+
+services:
+  php: 
+    build: ./php
+    ports:
+      - 8081:80
+    networks:
+      - app_network
+
+  db:
+    image: mysql
+    restart: always
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_ROOT_PASSWORD_FILE: /run/secrets/mysql_root_password
+    secrets:
+      - mysql_root_password
+    networks:
+      - db_network
+
+  phpmyadmin:
+    image: phpmyadmin
+    restart: always
+    ports:
+      - 8080:80
+    environment:
+      - PMA_HOST=db
+      - PMA_USER=root
+      - PMA_PASSWORD_FILE=/run/secrets/mysql_root_password
+    secrets:
+      - mysql_root_password
+    networks:
+      - db_network
+
+networks:
+  db_network:
+    name: db_network
+    driver: bridge
+  app_network:
+    name: app_network
+    driver: bridge
+
+secrets:
+  mysql_root_password:
+    file: ./secrets/mysql_root_password
+```
