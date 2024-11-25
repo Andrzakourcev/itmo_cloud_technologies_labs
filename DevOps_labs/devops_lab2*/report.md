@@ -59,6 +59,8 @@ services:
     command: --default-authentication-plugin=mysql_native_password
     environment:
       MYSQL_ROOT_PASSWORD: 12345678
+    ports:
+      - 3030:3030
 
   phpmyadmin:
     image: phpmyadmin
@@ -70,5 +72,19 @@ services:
 ```
 
 * `build: ./php` - явно указываем где находится Dockerfile со всеми настройками проекта.
+
+* Давайте соберем и запустим наш Docker Compose файл
+* `sudo docker compose build` - собрать проект.
+* `sudo docker compose up` - запустить проект.
+
+![image](https://github.com/user-attachments/assets/45980189-5e44-495c-adc4-8eb1862b97fd)
+
+![Снимок экрана от 2024-11-25 13-08-24](https://github.com/user-attachments/assets/b6965f7e-fbb3-4c7a-9b64-cc662439e8b5)
+
+![Снимок экрана от 2024-11-25 13-08-29](https://github.com/user-attachments/assets/d7806dc7-59d1-4bc4-80b4-45564125de20)
+
+![Снимок экрана от 2024-11-25 13-08-40](https://github.com/user-attachments/assets/7cb3e5ff-2e31-4746-b7c4-4f8a2c4ccc45)
+
+* Как можно увидеть у нас все запустилось. Но у нас не получается подключиться в phpmyadmin. Эту проблему мы решим дальше.
 
 ## Хороший Docker Compose
