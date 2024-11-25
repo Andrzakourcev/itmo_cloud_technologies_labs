@@ -38,3 +38,5 @@
 
 >  Сначала зайдем на **DockerHub** (https://hub.docker.com/), откуда подтянем несколько готовых образов. Пусть это будет образ `phpmyadmin` (графический интерфейс для управдения базами данных) и БД `mysql`.
 
+![Снимок экрана от 2024-11-25 12-27-17](https://github.com/user-attachments/assets/a7349cf8-be15-40ec-96ad-326f5c1cc248)
+![Снимок экрана от 2024-11-25 12-27-42](https://github.com/user-attachments/assets/3627cb78-6186-49bd-810f-755bf6602467)
