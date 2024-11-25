@@ -39,4 +39,36 @@
 >  Сначала зайдем на **DockerHub** (https://hub.docker.com/), откуда подтянем несколько готовых образов. Пусть это будет образ `phpmyadmin` (графический интерфейс для управдения базами данных) и БД `mysql`.
 
 ![Снимок экрана от 2024-11-25 12-27-17](https://github.com/user-attachments/assets/a7349cf8-be15-40ec-96ad-326f5c1cc248)
+
 ![Снимок экрана от 2024-11-25 12-27-42](https://github.com/user-attachments/assets/3627cb78-6186-49bd-810f-755bf6602467)
+
+* Ниже напишем Docker Compose файл с описанием выше упомянутых сервисов и нашим проектом, которые выводит в окно браузера приветсвующее сообщение.
+
+```
+version: '3.1'
+
+services:
+  php: 
+    build: ./php
+    ports:
+      - 8081:80
+
+  db:
+    image: mysql
+    restart: always
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_ROOT_PASSWORD: 12345678
+
+  phpmyadmin:
+    image: phpmyadmin
+    restart: always
+    ports:
+      - 8080:80
+    environment:
+      - PMA_ARBITRARY=1
+```
+
+* `build: ./php` - явно указываем где находится Dockerfile со всеми настройками проекта.
+
+## Хороший Docker Compose
