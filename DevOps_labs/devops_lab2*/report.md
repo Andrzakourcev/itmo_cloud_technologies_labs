@@ -81,7 +81,8 @@ services:
 
 ![Снимок экрана от 2024-11-25 13-08-24](https://github.com/user-attachments/assets/b6965f7e-fbb3-4c7a-9b64-cc662439e8b5)
 
-![Снимок экрана от 2024-11-25 13-08-29](https://github.com/user-attachments/assets/d7806dc7-59d1-4bc4-80b4-45564125de20)
+![image](https://github.com/user-attachments/assets/89e9e931-81f1-4c0d-a3b3-1270d13620d8)
+
 
 ![Снимок экрана от 2024-11-25 13-08-40](https://github.com/user-attachments/assets/7cb3e5ff-2e31-4746-b7c4-4f8a2c4ccc45)
 
