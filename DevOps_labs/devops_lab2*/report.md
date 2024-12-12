@@ -102,13 +102,10 @@ services:
       - app_network
 
   db:
-    image: mysql
+    image: mysql:8.0
     restart: always
-    command: --default-authentication-plugin=mysql_native_password
     environment:
-      MYSQL_ROOT_PASSWORD_FILE: /run/secrets/mysql_root_password
-    secrets:
-      - mysql_root_password
+      MYSQL_ROOT_PASSWORD: root_password  # Указываем пароль явно
     networks:
       - db_network
 
@@ -118,11 +115,9 @@ services:
     ports:
       - 8080:80
     environment:
-      - PMA_HOST=db
-      - PMA_USER=root
-      - PMA_PASSWORD_FILE=/run/secrets/mysql_root_password
-    secrets:
-      - mysql_root_password
+      PMA_HOST: db
+      PMA_USER: root
+      PMA_PASSWORD: root_password
     networks:
       - db_network
 
@@ -133,8 +128,4 @@ networks:
   app_network:
     name: app_network
     driver: bridge
-
-secrets:
-  mysql_root_password:
-    file: ./secrets/mysql_root_password
 ```
