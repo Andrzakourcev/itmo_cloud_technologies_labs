@@ -105,7 +105,7 @@ services:
     image: mysql:8.0
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: root_password  # Указываем пароль явно
+      MYSQL_ROOT_PASSWORD: root_password
     networks:
       - db_network
 
