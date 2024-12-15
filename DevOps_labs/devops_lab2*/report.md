@@ -129,3 +129,66 @@ networks:
     name: app_network
     driver: bridge
 ```
+
+* Так будет выглядеть наш исправленный **docker-compose.yml**. Давайте запустим его и убедимся, что все работает.
+* `sudo docker compose build` - собрать проект.
+* `sudo docker compose up` - запустить проект.
+
+![Снимок экрана от 2024-12-15 14-20-09](https://github.com/user-attachments/assets/fdfbe765-ae71-4d54-bf5a-721bd5828884)
+
+![Снимок экрана от 2024-12-15 14-27-15](https://github.com/user-attachments/assets/421edaf0-e9df-420e-b3fc-f2ea4db5a790)
+
+* Как видим все заработало. Давайте сделаем наш **docker-compose.yml** еще лучше и вынесем переменные окружения в отдельный файл `.env`.
+* Для этого создадим в папке с нашим проектом файл **.env** и заполним его.
+
+![Снимок экрана от 2024-12-15 15-42-54](https://github.com/user-attachments/assets/e58826b0-91c7-4185-bcf9-86e7efb5f3cc)
+
+* Также чуть перепишем наш docker-compose-файл.
+
+```
+version: '3.2'
+
+services:
+  php: 
+    build: ./php
+    ports:
+      - 8081:80
+    networks:
+      - app_network
+
+  db:
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+    networks:
+      - db_network
+
+  phpmyadmin:
+    image: phpmyadmin
+    restart: always
+    ports:
+      - 8080:80
+    environment:
+      PMA_HOST: ${PMA_HOST}
+      PMA_USER: ${PMA_USER}
+      PMA_PASSWORD: ${PMA_PASSWORD}
+    networks:
+      - db_network
+
+networks:
+  db_network:
+    name: db_network
+    driver: bridge
+  app_network:
+    name: app_network
+    driver: bridge
+```
+
+* Собираем проект заново и проверяем, что все заработало.
+
+![Снимок экрана от 2024-12-15 15-43-45](https://github.com/user-attachments/assets/54092acd-60e7-474c-945b-c7b946d6ca3e)
+
+![Снимок экрана от 2024-12-15 15-43-53](https://github.com/user-attachments/assets/b8c479b1-8780-4ea7-80d9-129deeb171a6)
+
+
