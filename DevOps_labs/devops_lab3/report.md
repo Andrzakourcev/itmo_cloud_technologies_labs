@@ -54,7 +54,7 @@ jobs:
 ## Хороший (исправленный) pipeline
 
 ```
-name: Bad Practices pipeline
+name: Good Practices pipeline
 
 on: workflow_dispatch
 
